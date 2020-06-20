@@ -1,0 +1,35 @@
+# depslib dependency file v1.0
+1592646185 source:d:\kuliah\reservasi-hotel\main.cpp
+	<iostream>
+	<windows.h>
+	"header.h"
+
+1592649497 d:\kuliah\reservasi-hotel\header.h
+
+1592649404 source:d:\kuliah\reservasi-hotel\otentikasi.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<conio.h>
+	<windows.h>
+	"header.h"
+
+1592649270 source:d:\kuliah\reservasi-hotel\tentang.cpp
+	<iostream>
+	<windows.h>
+	"header.h"
+
+1592647026 source:d:\kuliah\reservasi-hotel\resource.rc
+
+1592649462 source:d:\kuliah\reservasi-hotel\denah.cpp
+	<iostream>
+	"header.h"
+
+1592649270 source:d:\kuliah\reservasi-hotel\pengaturan.cpp
+	<iostream>
+	"header.h"
+
+1592649462 source:d:\kuliah\reservasi-hotel\reservasi.cpp
+	<iostream>
+	"header.h"
+
