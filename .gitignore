@@ -1,6 +1,5 @@
 # Prerequisites
 *.d
-*.depend
 
 # Compiled Object files
 *.slo
@@ -31,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+#Code::Blocks
+bin/*
+obj/*
+*.layout
+*.depend
