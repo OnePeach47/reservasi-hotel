@@ -2,6 +2,7 @@
 #define HEADER_H_INCLUDED
 
 int main();
+int cekStructCredential();
 void otentikasi();
 void pengaturan();
 void reservasi();

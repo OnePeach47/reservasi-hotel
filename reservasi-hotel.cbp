@@ -35,6 +35,7 @@
 		</Compiler>
 		<Unit filename="denah.cpp" />
 		<Unit filename="header.h" />
+		<Unit filename="helper.cpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="otentikasi.cpp" />
 		<Unit filename="pengaturan.cpp" />

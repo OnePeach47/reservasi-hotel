@@ -6,6 +6,7 @@
 #include <windows.h>
 
 #include "header.h"
+#include "helper.cpp"
 
 using namespace std;
 
@@ -35,8 +36,13 @@ void otentikasi(){
         akunBaru();
         break;
 
+    case 3:
+        //keluar();
+        break;
+
     case 99:
         main();
+        break;
 
     default:
         cout << "[ERROR] Maaf pilihan tidak tersedia." << endl;
@@ -101,9 +107,41 @@ void akunBaru(){
     string password=getpass("Masukkan ulang kata sandi: ",true);
 
     if (pwd == password){
+        ofstream credential;
+        credential.open ("kredensial.dat");
 
-        cout << "\n[SUCCSESS] Kredensial berhasil disimpan dan\n berkas " << " berhasil dibuat.";
+        if(credential.is_open()){
+            int cek = cekStructCredential();
+            string cekFname = to_string(cek);
+            ofstream savestate;
+            string savestateFname = ("savestate_p" + cekFname + "_" + usr + ".dat");
+            savestate.open (savestateFname);
+
+            if (savestate.is_open()){
+                void pNum = p + cek;
+                kredensial pNum = {usr, password, savestate};
+                credential << (&["p" + cek], sizeof(struct kredensial));
+
+            }else{
+                cout << "\n[ERROR] Gagal membuat berkas save state , pastikan Anda memiliki akses perizinan yang cukup";
+                system("pause");
+                otentikasi();
+            }
+
+        }else{
+            cout << "\n[ERROR] Gagal membuka berkas kredential, pastikan Anda memiliki akses perizinan yang cukup";
+            system("pause");
+            otentikasi();
+        }
+        credential.close();
+
+        cout << "\n[SUCCSESS] Kredensial berhasil disimpan dan\n berkas save state berhasil dibuat.";
+        system("pause");
         masuk();
+    }else{
+        cout << "\n[ERROR] Kata sandi tidak cocok." << endl;
+        system("pause");
+        otentikasi();
     }
 }
 

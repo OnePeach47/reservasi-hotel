@@ -5,5 +5,5 @@ using namespace std;
 void denah(){
     system("cls");
 
-    cout <<
+
 }

@@ -47,8 +47,13 @@ int main()
         denah();
         break;
 
+    case 6:
+        tentang();
+        break;
+
     case 88:
         keluar();
+        break;
 
     default:
         cout << "[ERROR] Maaf pilihan tidak tersedia." << endl;
@@ -60,6 +65,7 @@ int main()
 void keluar(){
     char input;
 
+    system("cls");
     cout << "BERANDA > KELUAR\n" << endl;
     cout << "Anda yakin ingin keluar (y/t) ";
     cin >> input;
