@@ -1,9 +1,11 @@
-# reservasi-hotel
-[![Build Status](https://travis-ci.com/OnePeach47/reservasi-hotel.svg?branch=master)](https://travis-ci.com/OnePeach47/reservasi-hotel)
-![GitHub](https://img.shields.io/github/license/OnePeach47/reservasi-hotel)
-![Packagist Version (including pre-releases)](https://img.shields.io/packagist/v/OnePeach47/reservasi-hotel?include_prereleases)
+# [reservasi-hotel](https://onepeach47.github.io/reservasi-hotel)
 
-## Dukung saya
-### Donasi
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Q5Q81UCME)
-[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/OnePeach47)
+[![Build Status](https://travis-ci.com/OnePeach47/reservasi-hotel.svg?branch=master)][travis]
+[![GitHub](https://img.shields.io/github/license/OnePeach47/reservasi-hotel)]
+[![Packagist Version (including pre-releases)](https://img.shields.io/packagist/v/OnePeach47/reservasi-hotel?include_prereleases)]
+
+[travis]: https://travis-ci.com/OnePeach47/reservasi-hotel
+
+## Lisensi
+
+Lihat berkas [LICENSE](https://github.com/OnePeach47/reservasi-hotel/blob/master/LICENSE).
