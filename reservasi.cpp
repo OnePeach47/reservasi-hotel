@@ -2,12 +2,15 @@
 #include <ctime>
 #include <windows.h>
 #include "header.h"
+#include "list.cpp"
 
 using namespace std;
 
+/* operasi aritmetika pada waktu */
+
+
 /* buat struktur untuk menyimpan tamu */
-struct tamu
-{
+struct tamu {
     string nama;
     string namaPanggilan;
     string alamat;
@@ -22,10 +25,8 @@ tamu *pelanggan = new tamu[kapasitas];
 int indexTamu = 0;
 
 /* prosedur untuk menambahkan data ke struktur tamu */
-void tambahDataTamu(int p)
-{
-    for (int i = indexTamu; i < p+indexTamu; i++)
-    {
+void tambahDataTamu(int p) {
+    for (int i = indexTamu; i < p+indexTamu; i++) {
         cout << "Masukkan data pelanggan ke-" << i+1 << ", indeks ke-" << i << ":" << endl;
         cout << "Masukkan nama lengkap               : ";
         getline(cin, pelanggan[i].nama);
@@ -46,14 +47,11 @@ void tambahDataTamu(int p)
 }
 
 /* prosedur pencarian kamar metode sequential */
-int cariIndeksKamar(int k)
-{
+int cariIndeksKamar(int k) {
     int i = 0;
 
-    while (i < indexTamu)
-    {
-        if (pelanggan[i].kamar == k)
-        {
+    while (i < indexTamu) {
+        if (pelanggan[i].kamar == k) {
             break;
         }
         i++;
@@ -63,14 +61,11 @@ int cariIndeksKamar(int k)
 }
 
 /* prosedur pencarian indeks kamar tamu metode sequential */
-int cariIndeksKamarTamu (string n)
-{
+int cariIndeksKamarTamu (string n) {
     int i = 0;
 
-    while (i < indexTamu)
-    {
-        if (pelanggan[i].namaPanggilan == n)
-        {
+    while (i < indexTamu) {
+        if (pelanggan[i].namaPanggilan == n) {
             break;
         }
         i++;
@@ -80,8 +75,7 @@ int cariIndeksKamarTamu (string n)
 }
 
 /* main driver cari tamu */
-void cariTamu()
-{
+void cariTamu() {
     string n;
     int indeksData;
 
@@ -103,13 +97,11 @@ void cariTamu()
 }
 
 /* main driver tampil tamu */
-void tampilTamu()
-{
+void tampilTamu() {
     int i = 0;
     bool kembali = 0;
 
-    do
-    {
+    do {
         system ("cls");
 
         cout << "BERANDA > TAMPIL TAMU\n" << endl;
@@ -122,13 +114,11 @@ void tampilTamu()
 
         cout << "Lanjut (y/n)? ";
         cin >> kembali;
-    }
-    while (i <= indexTamu && kembali == 0);
+    } while (i <= indexTamu && kembali == 0);
 }
 
 /* main driver check out */
-void checkOut()
-{
+void checkOut() {
     int k, indeksData, bayar;
 
     system("cls");
@@ -148,16 +138,20 @@ void checkOut()
     time_t durasi = sekarang - pelanggan[indeksData].waktu;
     cout << "Durasi              : " << durasi << " malam" << endl;
     cout << "Total               : Rp" << pelanggan[indeksData].harga*durasi << endl;
-    cout << "Bayar               : ";
+    cout << "====================================================================" << endl;
+    cout << "Bayar               : Rp";
     cin >> bayar;
+    cout << "Kembali             : Rp";
 
+    TambahDepan(pelanggan[indeksData].nama + "," + pelanggan[indeksData].alamat + "," +
+                pelanggan[indeksData].kamar + "," + pelanggan[indeksData].harga + "," +
+                );
 
-    // delete[indeksData] pelanggan;
+    delete[indeksData] pelanggan;
 }
 
 /* main driver check-in */
-void checkIn()
-{
+void checkIn() {
     int p;
 
     system("cls");

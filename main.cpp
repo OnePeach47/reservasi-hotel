@@ -1,10 +1,10 @@
 #include <iostream>
+#include <windows.h>
 #include "header.h"
 
 using namespace std;
 
-int main()
-{
+int main() {
     int pil;
 
     system("cls");
@@ -19,8 +19,7 @@ int main()
          "Masukkan pilihan Anda: ";
     cin >> pil;
 
-    switch(pil)
-    {
+    switch(pil) {
     case 1:
         checkIn();
         break;
@@ -35,6 +34,10 @@ int main()
 
     case 4:
         checkOut();
+        break;
+
+    case 6:
+        riwayatReservasi();
         break;
     }
 }

@@ -5,3 +5,4 @@ void checkIn();
 void cariTamu();
 void tampilTamu();
 void checkOut();
+void riwayatReservasi();
