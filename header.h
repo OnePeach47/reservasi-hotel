@@ -6,3 +6,7 @@ void cariTamu();
 void tampilTamu();
 void checkOut();
 void riwayatReservasi();
+void denah();
+void tentang();
+void keluar();
+void TambahDepan(std::string data_user);

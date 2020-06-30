@@ -1,5 +1,7 @@
 #include <iostream>
+#include <windows.h>
 #include <fstream>
+#include "header.h"
 
 using namespace std;
 
@@ -99,7 +101,7 @@ void eksporData()
         ofstream pengunjung ("ekspor.csv");
 
         if (pengunjung.is_open()){
-            pengunjung << "Nama,Alamat,Nomor Kamar,Harga,Check-in,Check out,Total" << endl;
+            pengunjung << "Nama,Alamat,Nomor Kamar,Harga,Durasi,Total" << endl;
             while (helper != NULL){
                 pengunjung << helper -> data << endl;
                 helper = helper -> next;

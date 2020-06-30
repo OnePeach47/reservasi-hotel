@@ -15,6 +15,7 @@ int main() {
          "4.  Check out" << endl <<
          "5.  Denah" << endl <<
          "6.  Lihat riwayat reservasi" << endl <<
+         "7.  Tentang aplikasi" << endl <<
          "\n99. Keluar" << endl <<
          "Masukkan pilihan Anda: ";
     cin >> pil;
@@ -36,8 +37,26 @@ int main() {
         checkOut();
         break;
 
+    case 5:
+        denah();
+        break;
+
     case 6:
         riwayatReservasi();
         break;
+
+    case 7:
+        tentang();
+        break;
+
+    case 99:
+        keluar();
+        break;
+
+    default:
+        cout << "Maaf, pilihan tidak tersedia." << endl;
+        system("pause");
+        main();
+
     }
 }

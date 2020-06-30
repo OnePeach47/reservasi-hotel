@@ -1,13 +1,9 @@
 #include <iostream>
-#include <ctime>
 #include <windows.h>
+#include <sstream>
 #include "header.h"
-#include "list.cpp"
 
 using namespace std;
-
-/* operasi aritmetika pada waktu */
-
 
 /* buat struktur untuk menyimpan tamu */
 struct tamu {
@@ -16,7 +12,7 @@ struct tamu {
     string alamat;
     int kamar;
     int harga;
-    time_t waktu;
+    int waktu;
 };
 
 /* alokasikan kapasitas array dinamis berstruktur */
@@ -41,7 +37,8 @@ void tambahDataTamu(int p) {
         cin >> pelanggan[i].kamar;
         cout << "Masukkan harga                      : ";
         cin >> pelanggan[i].harga;
-        pelanggan[i].waktu = time(0);
+        cout << "Masukkan durasi (malam)             : ";
+        cin >> pelanggan[i].waktu;
         cout << endl;
     }
 }
@@ -112,14 +109,22 @@ void tampilTamu() {
         cout << "Nomor kamar   : " << pelanggan[i].kamar << endl;
         i++;
 
-        cout << "Lanjut (y/n)? ";
+        if (i <= indexTamu){
+            cout << "\nLanjut (y/n)? ";
         cin >> kembali;
+        }else{
+            kembali = 1;
+            cout << endl;
+            system("pause");
+        }
+
+
     } while (i <= indexTamu && kembali == 0);
 }
 
 /* main driver check out */
 void checkOut() {
-    int k, indeksData, bayar;
+    int k, indeksData, bayar, total;
 
     system("cls");
 
@@ -134,20 +139,33 @@ void checkOut() {
     cout << "Alamat              : " << pelanggan[indeksData].alamat << endl;
     cout << "Nomor kamar         : " << pelanggan[indeksData].kamar << endl;
     cout << "Harga               : Rp" << pelanggan[indeksData].harga << endl;
-    time_t sekarang = time(0);
-    time_t durasi = sekarang - pelanggan[indeksData].waktu;
-    cout << "Durasi              : " << durasi << " malam" << endl;
-    cout << "Total               : Rp" << pelanggan[indeksData].harga*durasi << endl;
+    cout << "Durasi              : " << pelanggan[indeksData].waktu << " malam" << endl;
+    total = pelanggan[indeksData].harga*pelanggan[indeksData].waktu;
+    cout << "Total               : Rp" << total << endl;
     cout << "====================================================================" << endl;
     cout << "Bayar               : Rp";
     cin >> bayar;
-    cout << "Kembali             : Rp";
+    cout << "Kembali             : Rp" << total - bayar;
 
-    TambahDepan(pelanggan[indeksData].nama + "," + pelanggan[indeksData].alamat + "," +
-                pelanggan[indeksData].kamar + "," + pelanggan[indeksData].harga + "," +
-                );
+    stringstream ss;
+    ss << pelanggan[indeksData].nama << "," << pelanggan[indeksData].alamat << "," << pelanggan[indeksData].kamar << "," << pelanggan[indeksData].harga << "," << pelanggan[indeksData].waktu << "," << total;
+    string data = ss.str();
 
-    delete[indeksData] pelanggan;
+    TambahDepan(data);
+
+    for (int i = indeksData; i <= indexTamu; i++){
+        pelanggan[i].nama = pelanggan[i+1].nama;
+        pelanggan[i].namaPanggilan = pelanggan[i+1].namaPanggilan;
+        pelanggan[i].alamat = pelanggan[i+1].alamat;
+        pelanggan[i].kamar = pelanggan[i+1].kamar;
+        pelanggan[i].harga = pelanggan[i+1].harga;
+        pelanggan[i].waktu = pelanggan[i+1].waktu;
+    }
+
+    indexTamu--;
+
+    cout << "Pengunjung berhasil check out." << endl;
+    system("pause");
 }
 
 /* main driver check-in */

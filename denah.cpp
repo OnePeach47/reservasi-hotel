@@ -1,7 +1,8 @@
-#include  <iostream>
+#include <iostream>
 #include <string>
 #include <cstdlib>
 #include <windows.h>
+#include "header.h"
 
 using namespace std;
 
@@ -18,33 +19,34 @@ int*kunjungan;
 int baris;
 char ya_tidak;
 
-void buatMatriks(){
+void buatMatriks() {
     dataKamar=new int [jumlahKamar];
     dataJarak=new int*[jumlahKamar];
     dataJarak[0]=new int[jumlahKamar*jumlahKamar];
-    for(int i=1;i<jumlahKamar;i++){
+    for(int i=1; i<jumlahKamar; i++) {
         dataJarak[i]=dataJarak[i-1]+jumlahKamar;
     }
-cout<<"Silahkan masukkan nomer kamar: "<<endl;
-    for(int i=0;i<jumlahKamar;i++){
-        cout<<"Nomer"<<i+1<<":";
+    cout<<"\n[NOMOR KAMAR]"<<endl;
+    for(int i=0; i<jumlahKamar; i++) {
+        cout<<"Kamar ke-"<<i+1<<": ";
         cin>>dataKamar[i];
     }
 
-cout<<"Silahkan masukkan jarak antar kamar: "<<endl;
-    for(int baris=0;baris<jumlahKamar;baris++){
-        for(int kolom=0;kolom<jumlahKamar;kolom++){
-            cout<<dataKamar[baris]<<"-->"<<dataKamar[kolom]<<":";
+    cout<<"\n[JARAK ANTAR KAMAR]"<<endl;
+    for(int baris=0; baris<jumlahKamar; baris++) {
+        for(int kolom=0; kolom<jumlahKamar; kolom++) {
+            cout<<dataKamar[baris]<<" --> "<<dataKamar[kolom]<<": ";
             cin>>dataJarak[baris][kolom];
         }
         cekMatrik=true;
     }
 }
-void hitungJarakTerdekat(){
-    if(cekMatrik){
+
+void hitungJarakTerdekat() {
+    if(cekMatrik) {
         jarakDiketahui=new int[jumlahKamar];
         kunjungan=new int[jumlahKamar];
-        for(int i=0;i<jumlahKamar;i++){
+        for(int i=0; i<jumlahKamar; i++) {
             jarakDiketahui[i]=999;
             kunjungan[i]=belumDikunjungi;
         }
@@ -52,16 +54,16 @@ void hitungJarakTerdekat(){
         jarakDiketahui[kamarAsal]=0;
         kamarSekarang=kamarAsal;
         cout<<kamarSekarang;
-        while(kamarSekarang!=kamarTujuan){
+        while(kamarSekarang!=kamarTujuan) {
             jarakLama=999;
             jarakSekarang=jarakDiketahui[kamarSekarang];
-            for(int i=0;i<jumlahKamar;i++){
-                if(kunjungan[i]==belumDikunjungi){
+            for(int i=0; i<jumlahKamar; i++) {
+                if(kunjungan[i]==belumDikunjungi) {
                     jarakBaru=jarakSekarang+dataJarak[kamarSekarang][i];
-                    if(jarakBaru<jarakDiketahui[i]){
+                    if(jarakBaru<jarakDiketahui[i]) {
                         jarakDiketahui[i]=jarakBaru;
                     }
-                    if(jarakDiketahui[i]<jarakLama){
+                    if(jarakDiketahui[i]<jarakLama) {
                         jarakLama=jarakDiketahui[i];
                         posisiIndeks=i;
                     }
@@ -77,79 +79,71 @@ void hitungJarakTerdekat(){
     }
 }
 
-void tampilMatriks(){
-    if(cekMatrik){
-        for(int i=0;i<jumlahKamar;i++){
+void tampilMatriks() {
+    cout << "\n[MATRIKS]" << endl;
+
+    if(cekMatrik) {
+        for(int i=0; i<jumlahKamar; i++) {
             cout<<dataKamar[i]<<" ";
         }
         cout<<endl;
-        for(int baris=0;baris<jumlahKamar;baris++){
-            for(int kolom=0;kolom<jumlahKamar;kolom++){
-                cout<<dataJarak[baris][kolom]<<" "; }
-                cout<<endl;
+        for(int baris=0; baris<jumlahKamar; baris++) {
+            for(int kolom=0; kolom<jumlahKamar; kolom++) {
+                cout<<dataJarak[baris][kolom]<<" ";
             }
-        }else{
-            cout<<"Tidak ada matriks"<<endl;
+            cout<<endl;
+        }
+    } else {
+        cout<<"Matriks tidak ditemukan."<<endl;
     }
 }
 
-int main(){
-    char keluar;
+void denah() {
     int pilihan;
 
-  do {
     system("cls");
-    cout << "\t Pencarian Jalur Terdekat antar Kamar" << endl;
-    cout << "1. Atur jumlah kamar" << endl;
-    cout << "2. Atur jarak antar kamar" << endl;
-    cout << "3. Cari jalur terdekat" << endl;
-    cout << "4. Keluar" << endl;
-    cout << "Silahkan Pilih Program (1-4): ";
+
+    cout << "BERANDA > DENAH\n" << endl;
+    cout << "1.  Atur denah" << endl;
+    cout << "2.  Cari jalur terdekat" << endl;
+    cout << "\n99. Kembali ke menu BERANDA" << endl;
+    cout << "Masukkan pilihan Anda: ";
     cin >> pilihan;
 
-    switch(pilihan){
+    switch(pilihan) {
     case 1:
+        system("cls");
+
+        cout << "BERANDA > DENAH > ATUR DENAH\n" << endl;
         cout << "Masukkan jumlah kamar: ";
         cin >> jumlahKamar;
-        system("pause");
-        break;
-    case 2:
         buatMatriks();
         tampilMatriks();
-        cout<< "berhasil mengatur jarak"<<endl;
+        cout << "\nPengaturan denah berhasil." << endl;
         system("pause");
+        denah();
         break;
-    case 3:
-        cout << "Masukkan kamar asal: ";
+
+    case 2:
+        system("cls");
+
+        cout << "BERANDA > PENCARIAN JALUR\n" << endl;
+        cout << "Masukkan kamar asal  : ";
         cin>>kamarAsal;
         cout << "Masukkan kamar tujuan: ";
         cin>>kamarTujuan;
-        cout << "Jarak terdekat antar kamar adalah: ";
+        cout << "\n[HASIL]" << endl;
         hitungJarakTerdekat();
-        cout<<endl;
-        cout <<"berhasil mencari jarak terdekat";
         system("pause");
         break;
-    case 4:
-        cout<<"Yakin ingin keluar (y/t) ? ";
-        cin>>ya_tidak;
-    if(ya_tidak == 'y' || ya_tidak == 'Y'){
-        cout<<" Terima kasih"<<endl;
-        keluar = true;
-    }
-        system("cls");
+
+    case 99:
+        main();
         break;
-        default :
-    cout<<"Pilihan tidak tersedia..."<<endl;
-    cout<<"Keluar (y/t) ? ";
-    cin>>ya_tidak;
-        if(ya_tidak == 'y' || ya_tidak == 'Y'){
-            cout<<" Terima kasih"<<endl;
-            keluar = true;
-        }else{
-            system("cls");
-        }
+
+    default :
+        cout << "Maaf, pilihan tidak tersedia." << endl;
+        system("pause");
+        denah();
     }
-}while(keluar == false);
-    return 0;
 }
