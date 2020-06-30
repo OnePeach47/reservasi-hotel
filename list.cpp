@@ -5,6 +5,8 @@
 
 using namespace std;
 
+ofstream pengunjung ("ekspor.csv");
+
 struct linkedlist{
     string data;
     linkedlist* next;
@@ -98,8 +100,6 @@ void eksporData()
         helper = head;
         tail = tail;
 
-        ofstream pengunjung ("ekspor.csv");
-
         if (pengunjung.is_open()){
             pengunjung << "Nama,Alamat,Nomor Kamar,Harga,Durasi,Total" << endl;
             while (helper != NULL){
@@ -107,7 +107,6 @@ void eksporData()
                 helper = helper -> next;
             }
         }
-        pengunjung.close();
         cout << "Data berhasil diekspor!";
     }
 }
