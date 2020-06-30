@@ -33,10 +33,15 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="denah.cpp" />
 		<Unit filename="header.h" />
 		<Unit filename="list.cpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="reservasi.cpp" />
+		<Unit filename="resources.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="tentang.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 			<code_completion />
