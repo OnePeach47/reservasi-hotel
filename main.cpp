@@ -30,7 +30,7 @@ int main() {
         break;
 
     case 3:
-        tampilTamu();
+        cariTamu();
         break;
 
     case 4:

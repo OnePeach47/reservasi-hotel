@@ -23,24 +23,23 @@ int indexTamu = 0;
 /* prosedur untuk menambahkan data ke struktur tamu */
 void tambahDataTamu(int p) {
     for (int i = indexTamu; i < p+indexTamu; i++) {
-        cout << "Masukkan data pelanggan ke-" << i+1 << ", indeks ke-" << i << ":" << endl;
-        cout << "Masukkan nama lengkap               : ";
-        getline(cin, pelanggan[i].nama);
-        cin.sync();
-        cout << "Masukkan nama panggilan             : ";
-        getline(cin, pelanggan[i].namaPanggilan);
-        cin.sync();
-        cout << "Masukkan alamat                     : ";
-        getline(cin, pelanggan[i].alamat);
-        cin.sync();
-        cout << "Masukkan nomor kamar                : ";
-        cin >> pelanggan[i].kamar;
-        cout << "Masukkan harga                      : ";
-        cin >> pelanggan[i].harga;
-        cout << "Masukkan durasi (malam)             : ";
-        cin >> pelanggan[i].waktu;
         cout << endl;
+        cout << "[DATA PELANGGAN KE-" << i+1 << ", INDEKS KE-" << i << "]" << endl;
+        cout << "Masukkan nama lengkap  : ";
+        cin >> pelanggan[i].nama;
+        cout << "Masukkan nama panggilan: ";
+        cin >> pelanggan[i].namaPanggilan;
+        cout << "Masukkan alamat        : ";
+        cin >> pelanggan[i].alamat;
+        cout << "Masukkan nomor kamar   : ";
+        cin >> pelanggan[i].kamar;
+        cout << "Masukkan harga         : ";
+        cin >> pelanggan[i].harga;
+        cout << "Masukkan durasi (malam): ";
+        cin >> pelanggan[i].waktu;
     }
+
+    indexTamu = p+indexTamu;
 }
 
 /* prosedur pencarian kamar metode sequential */
@@ -88,6 +87,7 @@ void cariTamu() {
     cout << "Nama                   : " << pelanggan[indeksData].nama << endl;
     cout << "Alamat                 : " << pelanggan[indeksData].alamat << endl;
     cout << "Nomor kamar            : " << pelanggan[indeksData].kamar << endl;
+    cout << endl;
 
     system("pause");
     main();
@@ -96,30 +96,24 @@ void cariTamu() {
 /* main driver tampil tamu */
 void tampilTamu() {
     int i = 0;
-    bool kembali = 0;
+
+    system ("cls");
+    cout << "BERANDA > TAMPIL TAMU\n" << endl;
+    cout << "\n[RINCIAN TAMU]" << endl;
 
     do {
-        system ("cls");
-
-        cout << "BERANDA > TAMPIL TAMU\n" << endl;
-        cout << "\n[RINCIAN TAMU DAN PEMBAYARAN]" << endl;
+        cout << "PELANGGAN KE-" << i+1 << ", INDEKS KE-" << i << ":" << endl;
         cout << "Nama          : " << pelanggan[i].nama << endl;
-        cout << "Nama panggilan: " << pelanggan[i].nama << endl;
+        cout << "Nama panggilan: " << pelanggan[i].namaPanggilan << endl;
         cout << "Alamat        : " << pelanggan[i].alamat << endl;
         cout << "Nomor kamar   : " << pelanggan[i].kamar << endl;
+        cout << endl;
         i++;
 
-        if (i <= indexTamu){
-            cout << "\nLanjut (y/n)? ";
-        cin >> kembali;
-        }else{
-            kembali = 1;
-            cout << endl;
-            system("pause");
-        }
+    } while (i < indexTamu);
 
-
-    } while (i <= indexTamu && kembali == 0);
+    system("pause");
+    main();
 }
 
 /* main driver check out */
@@ -145,15 +139,16 @@ void checkOut() {
     cout << "====================================================================" << endl;
     cout << "Bayar               : Rp";
     cin >> bayar;
-    cout << "Kembali             : Rp" << total - bayar;
+    cout << "Kembali             : Rp" << bayar-total;
+    cout << endl;
 
     stringstream ss;
-    ss << pelanggan[indeksData].nama << "," << pelanggan[indeksData].alamat << "," << pelanggan[indeksData].kamar << "," << pelanggan[indeksData].harga << "," << pelanggan[indeksData].waktu << "," << total;
+    ss << pelanggan[indeksData].nama << ";" << pelanggan[indeksData].alamat << ";" << pelanggan[indeksData].kamar << ";" << pelanggan[indeksData].harga << ";" << pelanggan[indeksData].waktu << ";" << total;
     string data = ss.str();
 
     TambahDepan(data);
 
-    for (int i = indeksData; i <= indexTamu; i++){
+    for (int i = indeksData; i <= indexTamu; i++) {
         pelanggan[i].nama = pelanggan[i+1].nama;
         pelanggan[i].namaPanggilan = pelanggan[i+1].namaPanggilan;
         pelanggan[i].alamat = pelanggan[i+1].alamat;
@@ -164,8 +159,9 @@ void checkOut() {
 
     indexTamu--;
 
-    cout << "Pengunjung berhasil check out." << endl;
+    cout << "\nPengunjung berhasil check out." << endl;
     system("pause");
+    main();
 }
 
 /* main driver check-in */
@@ -175,10 +171,15 @@ void checkIn() {
     system("cls");
 
     cout << "BERANDA > CHECK-IN\n" << endl;
-    cout << "Masukkan jumlah data yang ingin ditambah: ";
+    cout << "Masukkan jumlah data yang ingin ditambah : ";
     cin >> p;
     tambahDataTamu(p);
-    cout << "Data berhasil disimpan!" << endl;
+    cout << "\nData berhasil disimpan!" << endl;
     system("pause");
     main();
+}
+
+/* prosedur membebaskan memori */
+void freeMemory(){
+    delete [] pelanggan;
 }

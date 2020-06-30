@@ -5,8 +5,6 @@
 
 using namespace std;
 
-ofstream pengunjung;
-
 struct linkedlist {
     string data;
     linkedlist* next;
@@ -59,7 +57,7 @@ void TambahDepan(string data_user) {
 
 void HapusData() {
     if(simpul_kosong()==true) {
-        cout<<"Tidak ada data!";
+        cout << "Tidak ada data yang dihapus." << endl;
     } else {
         linkedlist* helper;
         helper = head;
@@ -79,7 +77,7 @@ void HapusData() {
 
 void TampilData() {
     if(simpul_kosong()==true) {
-        cout<<"Tidak ada data yang ditampilkan"<<endl;
+        cout<< "Tidak ada data yang ditampilkan." << endl;
     } else {
         linkedlist* helper;
         helper = head;
@@ -93,17 +91,21 @@ void TampilData() {
 }
 
 void eksporData() {
+    ofstream pengunjung ("ekspor.csv", ios::app);
     if(simpul_kosong() == true) {
-        cout << "Tidak ada data yang diekspor!" << endl;
+        cout << "Tidak ada data yang diekspor." << endl;
     } else {
         linkedlist* helper;
         helper = head;
         tail = tail;
 
-        if (inisialisasiEksporFlag == 0) {
-            pengunjung.open("ekspor.csv");
-            pengunjung << "Nama,Alamat,Nomor Kamar,Harga,Durasi,Total" << endl;
-            pengunjung.close();
+        if (inisialisasiEksporFlag == 0){
+            if(pengunjung.is_open()) {
+                pengunjung << "Nama;Alamat;Nomor Kamar;Harga;Durasi;Total" << endl;
+                pengunjung.close();
+            } else {
+                cerr << "Tidak dapat membuka berkas. Pastikan akses perizinan berkas yang memadai untuk mengakses berkas." << endl;
+            }
             inisialisasiEksporFlag = 1;
         } else {
             pengunjung.open("ekspor.csv", ios::app);
@@ -113,9 +115,12 @@ void eksporData() {
                     pengunjung << helper -> data << endl;
                     helper = helper -> next;
                 }
+                pengunjung.close();
+            } else {
+                cerr << "Tidak dapat membuka berkas. Pastikan akses perizinan berkas yang memadai untuk mengakses berkas." << endl;
             }
         }
-        cout << "Data berhasil diekspor!";
+        cout << "\nData berhasil diekspor!" << endl;
     }
 }
 
@@ -124,12 +129,10 @@ void riwayatReservasi() {
 
     system("cls");
 
-    cout << "BERANDA > TAMPIL TAMU\n" << endl;
-
+    cout << "BERANDA > RIWAYAT RESERVASI\n" << endl;
+    cout << "Nama;Alamat;Nomor Kamar;Harga;Durasi;Total" << endl;
     TampilData();
-
-    cout << "1.  Expor riwayat reservasi" << endl;
-    cout << "2.  Hapus semua riwayat reservasi" << endl;
+    cout << "\n1.  Expor riwayat reservasi" << endl;
     cout << "\n99. Kembali ke BERANDA" << endl;
     cout << "Masukkan pilihan Anda: ";
     cin >> pil;
@@ -137,13 +140,7 @@ void riwayatReservasi() {
     switch(pil) {
     case 1:
         eksporData();
-        system("pause");
-        riwayatReservasi();
-        break;
-
-    case 2:
         HapusData();
-        cout << "Data telah dihapus!" << endl;
         system("pause");
         riwayatReservasi();
         break;

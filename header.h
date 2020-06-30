@@ -10,3 +10,4 @@ void denah();
 void tentang();
 void keluar();
 void TambahDepan(std::string data_user);
+void freeMemory();

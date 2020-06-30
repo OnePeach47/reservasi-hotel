@@ -36,3 +36,4 @@ bin/*
 obj/*
 *.layout
 *.depend
+*.csv

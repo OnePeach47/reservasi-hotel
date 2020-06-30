@@ -8,4 +8,5 @@ void tentang(){
 }
 
 void keluar(){
+    freeMemory();
 }
