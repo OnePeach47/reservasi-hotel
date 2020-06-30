@@ -7,113 +7,119 @@ using namespace std;
 
 ofstream pengunjung;
 
-struct linkedlist{
+struct linkedlist {
     string data;
     linkedlist* next;
 };
 
 bool inisialisasiFlag = 0;
+bool inisialisasiEksporFlag = 0;
 
 linkedlist* head;
 linkedlist* tail;
 linkedlist* simpul;
 linkedlist* clear;
 
-void buat_simpul(string data_masukkan){
+void buat_simpul(string data_masukkan) {
     simpul = new linkedlist;
     simpul->data = data_masukkan;
     simpul->next = NULL;
 }
 
-void inisialisasi(){
+void inisialisasi() {
     head = NULL;
     tail = NULL;
 }
 
-bool simpul_kosong(){
-    if(head == NULL && tail == NULL){
+bool simpul_kosong() {
+    if(head == NULL && tail == NULL) {
         return true;
-    }else{
+    } else {
         return false;
     }
 }
 
-void TambahDepan(string data_user){
-    if (inisialisasiFlag == 0){
+void TambahDepan(string data_user) {
+    if (inisialisasiFlag == 0) {
         inisialisasi();
         inisialisasiFlag = 1;
-    }else{
-        if(simpul_kosong()==true){
-        buat_simpul(data_user);
-        head=simpul;
-        tail=simpul;
-    }else{
-     buat_simpul(data_user);
-        simpul->next = head;
-        head = simpul;
-    }
-}
-    }
-
-
-void HapusData(){
-   if(simpul_kosong()==true){
-       cout<<"Tidak ada data!";
-   }else{
-       linkedlist* helper;
-       helper = head;
-      // head = clear;
-   if(head == tail){
-       head = NULL;
-       tail = NULL;
-       delete helper;
-   }else{
-       head = head->next;
-       head = clear;
-       delete helper;
-     }
-   }
-}
-
-
-void TampilData(){
-    if(simpul_kosong()==true){
-        cout<<"Tidak ada data yang ditampilkan"<<endl;
-    }else{
-        linkedlist* helper;
-        helper = head;
-        tail = tail;
-    while(helper != NULL){
-        cout<<helper->data<<endl;
-
-        helper=helper->next;
+    } else {
+        if(simpul_kosong()==true) {
+            buat_simpul(data_user);
+            head=simpul;
+            tail=simpul;
+        } else {
+            buat_simpul(data_user);
+            simpul->next = head;
+            head = simpul;
         }
     }
 }
 
-void eksporData()
-{
-    if(simpul_kosong() == true){
+
+void HapusData() {
+    if(simpul_kosong()==true) {
+        cout<<"Tidak ada data!";
+    } else {
+        linkedlist* helper;
+        helper = head;
+        // head = clear;
+        if(head == tail) {
+            head = NULL;
+            tail = NULL;
+            delete helper;
+        } else {
+            head = head->next;
+            head = clear;
+            delete helper;
+        }
+    }
+}
+
+
+void TampilData() {
+    if(simpul_kosong()==true) {
+        cout<<"Tidak ada data yang ditampilkan"<<endl;
+    } else {
+        linkedlist* helper;
+        helper = head;
+        tail = tail;
+        while(helper != NULL) {
+            cout<<helper->data<<endl;
+
+            helper=helper->next;
+        }
+    }
+}
+
+void eksporData() {
+    if(simpul_kosong() == true) {
         cout << "Tidak ada data yang diekspor!" << endl;
-    }else{
+    } else {
         linkedlist* helper;
         helper = head;
         tail = tail;
 
-        pengunjung.open("ekspor.csv");
-
-        if (pengunjung.is_open()){
+        if (inisialisasiEksporFlag == 0) {
+            pengunjung.open("ekspor.csv");
             pengunjung << "Nama,Alamat,Nomor Kamar,Harga,Durasi,Total" << endl;
-            while (helper != NULL){
-                pengunjung << helper -> data << endl;
-                helper = helper -> next;
+            pengunjung.close();
+            inisialisasiEksporFlag = 1;
+        } else {
+            pengunjung.open("ekspor.csv", ios::app);
+
+            if (pengunjung.is_open()) {
+                while (helper != NULL) {
+                    pengunjung << helper -> data << endl;
+                    helper = helper -> next;
+                }
             }
         }
         cout << "Data berhasil diekspor!";
     }
 }
 
-void riwayatReservasi(){
+void riwayatReservasi() {
     int pil;
 
     system("cls");
@@ -128,7 +134,7 @@ void riwayatReservasi(){
     cout << "Masukkan pilihan Anda: ";
     cin >> pil;
 
-    switch(pil){
+    switch(pil) {
     case 1:
         eksporData();
         system("pause");
