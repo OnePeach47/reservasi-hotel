@@ -42,6 +42,19 @@ void buatMatriks() {
     }
 }
 
+int cariKamar(int k){
+    int i = 0;
+
+    while (i < jumlahKamar){
+        if (dataKamar[i] == k){
+            break;
+        }
+        i++;
+    }
+
+    return i;
+}
+
 void hitungJarakTerdekat() {
     if(cekMatrik) {
         jarakDiketahui=new int[jumlahKamar];
@@ -125,16 +138,21 @@ void denah() {
         break;
 
     case 2:
+        int asal, tujuan;
+
         system("cls");
 
         cout << "BERANDA > PENCARIAN JALUR\n" << endl;
         cout << "Masukkan kamar asal  : ";
-        cin>>kamarAsal;
+        cin >> asal;
+        kamarAsal = cariKamar(asal);
         cout << "Masukkan kamar tujuan: ";
-        cin>>kamarTujuan;
+        cin >> tujuan;
+        kamarTujuan = cariKamar(tujuan);
         cout << "\n[HASIL]" << endl;
         hitungJarakTerdekat();
         system("pause");
+        main();
         break;
 
     case 99:
