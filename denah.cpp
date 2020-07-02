@@ -141,7 +141,7 @@ void denah() {
 
         system("cls");
 
-        cout << "BERANDA > PENCARIAN JALUR\n" << endl;
+        cout << "BERANDA > DENAH > PENCARIAN JALUR\n" << endl;
         cout << "Masukkan kamar asal  : ";
         cin >> asal;
         kamarAsal = cariKamar(asal);

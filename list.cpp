@@ -10,8 +10,8 @@ struct linkedlist {
     linkedlist* next;
 };
 
-bool inisialisasiEksporFlag = 0;
 bool inisialisasiFlag = 0;
+bool inisialisasiEksporFlag = 0;
 
 linkedlist* head;
 linkedlist* tail;
@@ -88,15 +88,17 @@ void TampilData() {
 
 
 void eksporData() {
-    ofstream pengunjung ("ekspor.csv", ios::app);
+    ofstream pengunjung;
 
     if (inisialisasiEksporFlag == 0) {
         if (pengunjung.is_open()) {
-            pengunjung << "Nama;Alamat;Nomor Kamar;Harga;Durasi;Total" << endl;
+            pengunjung.open("ekspor.csv");
+            pengunjung << "Nama;Alamat;Nomor Kamar;Harga;Durasi;Diskon;Total" << endl;
+            pengunjung.close();
+            inisialisasiEksporFlag = 1;
         } else {
             cerr << "Tidak dapat membuka berkas. Pastikan akses perizinan berkas yang memadai untuk mengakses berkas." << endl;
         }
-        pengunjung.close();
     }
 
     if(simpul_kosong()==true) {
@@ -120,42 +122,7 @@ void eksporData() {
     }
 }
 
-/*
-void eksporData() {
-    ofstream pengunjung ("ekspor.csv", ios::app);
 
-    if(simpul_kosong() == true) {
-        cout << "Tidak ada data yang diekspor." << endl;
-    } else {
-        linkedlist* helper;
-        helper = head;
-        tail = tail;
-
-        if (inisialisasiEksporFlag == 0) {
-            if(pengunjung.is_open()) {
-                pengunjung << "Nama;Alamat;Nomor Kamar;Harga;Durasi;Total" << endl;
-                pengunjung.close();
-            } else {
-                cerr << "Tidak dapat membuka berkas. Pastikan akses perizinan berkas yang memadai untuk mengakses berkas." << endl;
-            }
-            inisialisasiEksporFlag = 1;
-        } else {
-            pengunjung.open("ekspor.csv", ios::app);
-
-            if (pengunjung.is_open()) {
-                while (helper != NULL) {
-                    pengunjung << helper -> data << endl;
-                    helper = helper -> next;
-                }
-                pengunjung.close();
-            } else {
-                cerr << "Tidak dapat membuka berkas. Pastikan akses perizinan berkas yang memadai untuk mengakses berkas." << endl;
-            }
-        }
-        cout << "\nData berhasil diekspor!" << endl;
-    }
-}
-*/
 
 void riwayatReservasi() {
     int pil;

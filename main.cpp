@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-    SetConsoleTitle("reservasi-hotel v0.1 (nightly)");
+    SetConsoleTitle("reservasi-hotel v0.2-alpha (nightly)");
 
     int pil;
 

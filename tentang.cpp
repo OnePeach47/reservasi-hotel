@@ -21,7 +21,7 @@ void tentang() {
           |\ ____\_\__
         -=\c`""""""" "`)
            `~~~~~/ /~~`                              reservasi-hotel
-             -==/ /                                  v0.1 (nightly)
+             -==/ /                                  v0.2-alpha (nightly)
                '-'                                   github.com/OnePeach47/reservasi-hotel/tree/nightly
 
                _  _                                  Pengembang awal: OnePeach47
@@ -67,6 +67,7 @@ ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
              TERIMA KASIH TELAH MENGGUNAKAN APLIKASI INI
                            SAMPAI JUMPA :))" << endl;
         freeMemory(); //dealokasi memori pada variabel array dinamis
+        HapusData(); //dealokasi linked list
         system("pause");
         exit(1);
     } else {
