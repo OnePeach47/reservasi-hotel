@@ -91,14 +91,10 @@ void eksporData() {
     ofstream pengunjung;
 
     if (inisialisasiEksporFlag == 0) {
-        if (pengunjung.is_open()) {
-            pengunjung.open("ekspor.csv");
-            pengunjung << "Nama;Alamat;Nomor Kamar;Harga;Durasi;Diskon;Total" << endl;
-            pengunjung.close();
-            inisialisasiEksporFlag = 1;
-        } else {
-            cerr << "Tidak dapat membuka berkas. Pastikan akses perizinan berkas yang memadai untuk mengakses berkas." << endl;
-        }
+        pengunjung.open("ekspor.csv");
+        pengunjung << "Nama;Alamat;Nomor Kamar;Harga;Durasi;Diskon;Total" << endl;
+        pengunjung.close();
+        inisialisasiEksporFlag = 1;
     }
 
     if(simpul_kosong()==true) {
