@@ -1,34 +1,78 @@
+/*
+Mengandung prefiks raw string literal (R"( raw_characters )")
+yang hanya kompatibel oleh kompiler C++11 ke atas.
+Referensi lebih lanjut: https://en.cppreference.com/w/cpp/language/string_literal
+*/
+
 #include <iostream>
 #include "header.h"
 #include <windows.h>
 
 using namespace std;
 
-void tentang(){
-    cout << "Program ini dikembangkan oleh :";
-    cout<<endl;
-    cout << "Afifah Nuraeni"<<endl;
-    cout << "Jihad Shindu Ghossa"<<endl;
-    cout << "Rozan Fajri Irfani"<<endl;
-    cout << "Santho Madear Purba"<<endl;
- system("pause");
- main();
+char pil;
+
+void tentang() {
+    system ("cls");
+
+    cout << "BERANDA > TENTANG APLIKASI\n" << endl;
+    cout << R"(              _
+              -=\`\
+          |\ ____\_\__
+        -=\c`""""""" "`)
+           `~~~~~/ /~~`                              reservasi-hotel
+             -==/ /                                  v0.1 (nightly)
+               '-'                                   github.com/OnePeach47/reservasi-hotel/tree/nightly
+
+               _  _                                  Pengembang awal: OnePeach47
+              ( `   )_                               Kontributor    : AfifahNuraeni, rozanfajri, sanmade
+             (    )    `)
+           (_   (_ .  _) _)
+                                          _
+                                         (  )        Licensed under MIT license.
+          _ .                         ( `  ) . )
+        (  _ )_                      (_, _(  ,_)_)
+      (_  _(_ ,))" << endl;
+    cout << endl;
+    system("pause");
+    main();
 }
 
-void keluar(){
-    cout << "Terima Kasih Sudah Menggunakan Layanan Kami"<<endl;
-    cout << "Selamat Menikmati,Semoga Hari Anda Menyenangkan :)"<<endl;
-    cout << "Sampai Jumpa :)"<<endl;
-    cout << endl;
+void keluar() {
+    system("cls");
 
-    char pil;
-    cout<< "Yakin ingin keluar(Y/T)? ";
+    cout << "BERANDA > KELUAR\n" << endl;
+    cout << "Apakah Anda yakin ingin keluar (y/t)? ";
     cin >> pil;
-    if (pil == 'Y' || 'y'){
-        cout << "Terima Kasih Sudah Menggunakan Layanan Kami"<<endl;
+
+    if (pil == 'T' || pil == 't') {
+        main();
+    } else if (pil == 'Y' || pil == 'y') {
+        cout << R"(                                   /\
+                              /\  //\\
+                       /\    //\\///\\\        /\
+                      //\\  ///\////\\\\  /\  //\\
+         /\          /  ^ \/^ ^/^  ^  ^ \/^ \/  ^ \
+        / ^\    /\  / ^   /  ^/ ^ ^ ^   ^\ ^/  ^^  \
+       /^   \  / ^\/ ^ ^   ^ / ^  ^    ^  \/ ^   ^  \       *
+      /  ^ ^ \/^  ^\ ^ ^ ^   ^  ^   ^   ____  ^   ^  \     /|\
+     / ^ ^  ^ \ ^  _\___________________|  |_____^ ^  \   /||o\
+    / ^^  ^ ^ ^\  /______________________________\ ^ ^ \ /|o|||\
+   /  ^  ^^ ^ ^  /________________________________\  ^  /|||||o|\
+  /^ ^  ^ ^^  ^    ||___|___||||||||||||___|__|||      /||o||||||\
+ / ^   ^   ^    ^  ||___|___||||||||||||___|__|||          | |
+/ ^ ^ ^  ^  ^  ^   ||||||||||||||||||||||||||||||oooooooooo| |ooooooo
+ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+             TERIMA KASIH TELAH MENGGUNAKAN APLIKASI INI
+                           SAMPAI JUMPA :))" << endl;
+        freeMemory(); //dealokasi memori pada variabel array dinamis
+        system("pause");
         exit(1);
-    }else if (pil == 'T'|| 't'){
-    main();
+    } else {
+        cout << "Maaf, pilihan tidak tersedia." << endl;
+        system("pause");
+        keluar();
     }
 }
 

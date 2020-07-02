@@ -17,7 +17,6 @@ int belumDikunjungi=0;
 int*jarakDiketahui;
 int*kunjungan;
 int baris;
-char ya_tidak;
 
 void buatMatriks() {
     dataKamar=new int [jumlahKamar];
@@ -42,11 +41,11 @@ void buatMatriks() {
     }
 }
 
-int cariKamar(int k){
+int cariKamar(int k) {
     int i = 0;
 
-    while (i < jumlahKamar){
-        if (dataKamar[i] == k){
+    while (i < jumlahKamar) {
+        if (dataKamar[i] == k) {
             break;
         }
         i++;
@@ -66,7 +65,7 @@ void hitungJarakTerdekat() {
         kunjungan[kamarAsal]=sudahDikunjungi;
         jarakDiketahui[kamarAsal]=0;
         kamarSekarang=kamarAsal;
-        cout<<kamarSekarang;
+        cout<<dataKamar[kamarSekarang];
         while(kamarSekarang!=kamarTujuan) {
             jarakLama=999;
             jarakSekarang=jarakDiketahui[kamarSekarang];
@@ -84,9 +83,9 @@ void hitungJarakTerdekat() {
             }
             kamarSekarang=posisiIndeks;
             kunjungan[kamarSekarang]=sudahDikunjungi;
-            cout<<" -> "<<kamarSekarang;
+            cout<<" -> "<<dataKamar[kamarSekarang];
         }
-        cout<<"\nJarak terdekat dari "<<kamarAsal<<" ke "<<kamarTujuan<<" adalah "<<jarakDiketahui[kamarTujuan]<<endl;
+        cout<<"\nJarak terdekat dari "<<dataKamar[kamarAsal]<<" ke "<<dataKamar[kamarTujuan]<<" adalah "<<jarakDiketahui[kamarTujuan]<<endl;
         delete jarakDiketahui;
         delete kunjungan;
     }

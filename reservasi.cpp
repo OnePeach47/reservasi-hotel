@@ -180,6 +180,6 @@ void checkIn() {
 }
 
 /* prosedur membebaskan memori */
-void freeMemory(){
+void freeMemory() {
     delete [] pelanggan;
 }

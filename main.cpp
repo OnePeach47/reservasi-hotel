@@ -5,6 +5,8 @@
 using namespace std;
 
 int main() {
+    SetConsoleTitle("reservasi-hotel v0.1 (nightly)");
+
     int pil;
 
     system("cls");

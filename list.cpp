@@ -10,8 +10,8 @@ struct linkedlist {
     linkedlist* next;
 };
 
-bool inisialisasiFlag = 0;
 bool inisialisasiEksporFlag = 0;
+bool inisialisasiFlag = 0;
 
 linkedlist* head;
 linkedlist* tail;
@@ -41,19 +41,17 @@ void TambahDepan(string data_user) {
     if (inisialisasiFlag == 0) {
         inisialisasi();
         inisialisasiFlag = 1;
+    }
+    if(simpul_kosong()==true) {
+        buat_simpul(data_user);
+        head=simpul;
+        tail=simpul;
     } else {
-        if(simpul_kosong()==true) {
-            buat_simpul(data_user);
-            head=simpul;
-            tail=simpul;
-        } else {
-            buat_simpul(data_user);
-            simpul->next = head;
-            head = simpul;
-        }
+        buat_simpul(data_user);
+        simpul->next = head;
+        head = simpul;
     }
 }
-
 
 void HapusData() {
     if(simpul_kosong()==true) {
@@ -61,7 +59,6 @@ void HapusData() {
     } else {
         linkedlist* helper;
         helper = head;
-        // head = clear;
         if(head == tail) {
             head = NULL;
             tail = NULL;
@@ -81,7 +78,6 @@ void TampilData() {
     } else {
         linkedlist* helper;
         helper = head;
-        tail = tail;
         while(helper != NULL) {
             cout<<helper->data<<endl;
 
@@ -90,8 +86,44 @@ void TampilData() {
     }
 }
 
+
 void eksporData() {
     ofstream pengunjung ("ekspor.csv", ios::app);
+
+    if (inisialisasiEksporFlag == 0) {
+        if (pengunjung.is_open()) {
+            pengunjung << "Nama;Alamat;Nomor Kamar;Harga;Durasi;Total" << endl;
+        } else {
+            cerr << "Tidak dapat membuka berkas. Pastikan akses perizinan berkas yang memadai untuk mengakses berkas." << endl;
+        }
+        pengunjung.close();
+    }
+
+    if(simpul_kosong()==true) {
+        cout<< "Tidak ada data yang diekspor." << endl;
+    } else {
+        pengunjung.open("ekspor.csv", ios::app);
+
+        if (pengunjung.is_open()) {
+            linkedlist* helper;
+            helper = head;
+            while(helper != NULL) {
+                pengunjung<<helper->data<<endl;
+
+                helper=helper->next;
+            }
+            pengunjung.close();
+            cout << "\nData berhasil diekspor!" << endl;
+        } else {
+            cerr << "Tidak dapat membuka berkas. Pastikan akses perizinan berkas yang memadai untuk mengakses berkas." << endl;
+        }
+    }
+}
+
+/*
+void eksporData() {
+    ofstream pengunjung ("ekspor.csv", ios::app);
+
     if(simpul_kosong() == true) {
         cout << "Tidak ada data yang diekspor." << endl;
     } else {
@@ -99,7 +131,7 @@ void eksporData() {
         helper = head;
         tail = tail;
 
-        if (inisialisasiEksporFlag == 0){
+        if (inisialisasiEksporFlag == 0) {
             if(pengunjung.is_open()) {
                 pengunjung << "Nama;Alamat;Nomor Kamar;Harga;Durasi;Total" << endl;
                 pengunjung.close();
@@ -123,6 +155,7 @@ void eksporData() {
         cout << "\nData berhasil diekspor!" << endl;
     }
 }
+*/
 
 void riwayatReservasi() {
     int pil;
